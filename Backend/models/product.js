@@ -21,6 +21,22 @@ const reviewSchema = new Schema({
         required: true
     }
 });
+const fashionAttributesSchema = new Schema({
+    size: {
+        type: [String],
+        required: true
+    },
+    colour: {
+        type: [String],
+        required: true
+    },
+    productAttributes: {
+        type: Schema.Types.Mixed,
+        required: false,
+        default:{}
+    }
+});
+
 
 const productSchema = new Schema({
     user: {
@@ -32,6 +48,15 @@ const productSchema = new Schema({
         required: true,
     },
     image: {
+        type: [String],
+        required: true
+    },
+    price: {
+        type:Number,
+        required: true,
+        default:0
+    },
+    category: {
         type: String,
         required: true
     },
@@ -39,13 +64,9 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
-    category: {
-        type: String,
-        required: true
-    },
     description: {
         type: String,
-        required: true
+        required: false
     },
     reviews: [reviewSchema],
     rating: {
@@ -55,12 +76,20 @@ const productSchema = new Schema({
     },
     numReviews: {
         type: Number,
-        required: true,
+        required: false,
         default: 0
     },
     countInStock: {
         type: Number,
         required: true
+    },
+    fashionAttributes: {
+        type: fashionAttributesSchema,
+        required: false
+    },
+    electronicAttributes: {
+        type: Schema.Types.Mixed,
+        required: false
     }
 }, { timestamps: true });
 

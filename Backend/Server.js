@@ -1,8 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose"); 
-const authRouter = require("./routes/authentication");
+const { authRouter } = require("./routes/authentication.js");
 const dbRouter= require("./routes/dbRouter");
+const validateToken=require('./middleware/authorization');
 const app = express();
 const port = 5000;
 
@@ -18,6 +19,9 @@ connection.once("open", () => {
 
 app.use("/register",dbRouter);
 app.use("/api/auth",authRouter);
+app.use('/protected',validateToken,(req,res)=>{
+    res.json({message:"permission granted",user:req.user});
+})
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
