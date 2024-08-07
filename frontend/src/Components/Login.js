@@ -33,7 +33,6 @@ const Login = () => {
                         throw new Error(`Error: ${response.status} - ${error.message}`);
                     }
                     const user = await response.json();
-                    console.log(user.user.userName.userName);
                     dispatch(setuserInfo({
                         isAuthenticated:true,
                         user:user.user.userName.userName,

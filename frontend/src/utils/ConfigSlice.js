@@ -16,9 +16,12 @@ const configSlice=createSlice({
         },
         setuserInfo:(state,action)=>{
             state.userInfo=action.payload;
+        },
+        clearuserInfo:(state,action)=>{
+            state.userInfo=action.payload;
         }
     }
 });
 
-export const {setisUserTheir,setuserInfo}=configSlice.actions;
+export const {setisUserTheir,setuserInfo,clearuserInfo}=configSlice.actions;
 export default configSlice.reducer;

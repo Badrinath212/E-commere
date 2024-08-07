@@ -3,9 +3,12 @@ const bycrypt = require("bcrypt");
 const {validationResult,body} = require("express-validator")
 const UserRegister=require("../models/user");
 const jwt=require("jsonwebtoken");
+const Token=require('../models/tokens');
 const router = express.Router();
+const dotenv=require('dotenv');
+dotenv.config();
 
-const secretKey="6309628294";
+const secretKey=process.env.SECRETKEY;
 const validateRegistration=[
     body("userName").not().isEmpty().withMessage("user name required"),
     body("email").isEmail().withMessage("Email is required"),
@@ -54,9 +57,22 @@ router.post("/login", validateUserLogin, async (req,res)=>{
         }
         const payload={userName:USER};
         const token=jwt.sign(payload,secretKey,{expiresIn:"2h"});
+        new Token({token:token,expireTime:Date.now()*2*60*60*1000}).save();
         res.json({message:`Login Sucessfully!`,token:token});
     }catch(err){
         res.status(500).json(`try again`);
+    }
+})
+router.post('/logout',async(req,res)=>{
+    try{
+        const {token}=req.body;
+        if(!token){
+            return res.status(400).json({message:"try again!"});
+        }
+        const response=await Token.findOneAndDelete({token});
+        res.json({message:"logout sucessfully!"});
+    }catch(err){
+        res.status(500).json({message:"server not responding"});
     }
 })
 
