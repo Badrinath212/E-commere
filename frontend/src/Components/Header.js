@@ -40,14 +40,14 @@ const Header=()=>{
         }
     }
     return (
-        <div className=' shadow-lg h-28 flex'>
+        <div className=' shadow-lg h-28 flex bg-slate-800 text-white'>
             {/*logo && location container*/ }
             <div>
                 <img className='w-36 h-28 ' alt='logo' src={LOGO_URL}/>
             </div>
             <div className=''>
                 <input 
-                        className='bg-white border-2 border-black w-[400px] h-9 ml-[400px] mt-8 rounded-md' 
+                        className='bg-white border-2 border-black w-[400px] h-9 ml-[400px] mt-8 rounded-md text-black' 
                         type='text'
                         value={searchQuery}
                         onChange={(e)=>setsearchQuery(e.target.value)}/>
@@ -59,7 +59,7 @@ const Header=()=>{
                 </div>
                 <div className='mt-9 ml-4'>
                     <label htmlFor='lang'>lang</label>
-                    <select onChange={(e)=>setlang(e.target.value)} value={lang}>
+                    <select className='text-black' onChange={(e)=>setlang(e.target.value)} value={lang}>
                         <option value="EN">English</option>
                         <option value="HI">Hindi</option>
                         <option value="TE">Telugu</option>

@@ -1,5 +1,6 @@
 const express = require("express");
 const Product = require("../models/product");
+const CategoryList = require("../models/categoryList");
 const { validationResult ,body} = require("express-validator");
 
 const router = express.Router();
@@ -41,4 +42,15 @@ router.post("/", validateForm ,async(req,res)=>{
     }
 });
 
-module.exports=router;
+router.post("/category",async (req,res)=>{
+    try{
+        const {category,attributes} = req.body;
+        const newList = new CategoryList({category,attributes})
+        await newList.save();
+        res.status(201).json({message:"data successfully added!"})
+    } catch(err){
+        res.status(500).json({message:`Error: ${err}`})
+    }
+})
+
+module.exports={dbRouter : router};
