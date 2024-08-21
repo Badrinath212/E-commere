@@ -45,8 +45,8 @@ const CategoryList = () => {
                 <ul className='flex p-4'>
                     {item.attributes && Object.entries(item.attributes).map(([key, value])=>(
                         <li className='p-2 text-center' key={key}>
-                            <img className='mt-3 cursor-pointer' alt='categoryicon' src={value}/>
-                            <strong>{key}</strong>
+                            <img className='mt-3 cursor-pointer w-[200px]' alt='categoryicon' src={value}/>
+                            {category!=='computers' && <strong>{key}</strong>}
                         </li>
                     ))}
                 </ul>
