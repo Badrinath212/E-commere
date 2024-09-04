@@ -27,6 +27,8 @@ connection.once("open", () => {
 
 app.use("/register", dbRouter);
 
+app.use("/offer", dbRouter);
+
 app.use("/api/auth", authRouter);
 
 app.use('/protected', validateToken, (req,res)=>{

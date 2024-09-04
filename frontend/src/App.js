@@ -6,9 +6,10 @@ import {RouterProvider, createBrowserRouter} from "react-router-dom";
 import Products from './DbComponents/Products';
 import Home from './Components/Home';
 import ProtectedRoute from './Components/ProtectedRoute';
-import ProductsPage from './Components/ProductsPage';
 import CategoryForm from './DbComponents/category';
 import CategoryList from './Components/CategoryList';
+import Body from './Components/Body';
+import Offers from './Components/offers'
 
 function App() {
   const AppRouter = createBrowserRouter([
@@ -25,18 +26,26 @@ function App() {
       element: <ProtectedRoute element={<Home />} />,
       children: [
         {
+          path : "/home/",
+          element : <Offers/>
+        },
+        {
           path : "/home/:category",
           element : <CategoryList/>
         },
         {
-          path : "/home/electronics/products",
-          element : <ProductsPage/>
-        }
+          path : "/home/:categoty/:products",
+          element : <Body/>
+        },
       ]
     },
     {
       path : '/category',
       element: <CategoryForm/>
+    },
+    {
+      path : '/offer',
+      element : <Offers/>
     }
   ]);
 

@@ -2,6 +2,7 @@ const express = require("express");
 const Product = require("../models/product");
 const CategoryList = require("../models/categoryList");
 const { validationResult ,body} = require("express-validator");
+const Offer = require('../models/offers');
 
 const router = express.Router();
 const validateForm = [
@@ -50,6 +51,17 @@ router.post("/category",async (req,res)=>{
         res.status(201).json({message:"data successfully added!"})
     } catch(err){
         res.status(500).json({message:`Error: ${err}`})
+    }
+})
+
+router.post('/add',async (req,res)=>{
+    try {
+        const {offer} = req.body;
+        const newOffer = new Offer({offer: offer});
+        await newOffer.save();
+        res.status(201).json({message : 'sucessfully added!'});
+    } catch(err){
+        res.status(500).json({message : 'server not responding!'});
     }
 })
 

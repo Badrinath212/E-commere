@@ -69,7 +69,7 @@ const Header=()=>{
                     <img className='w-11 ml-7 mt-7' alt='cart' src={CART_URL}/>
                 </div>
                 <div>
-                    <button type='button' onClick={handleLogout} className='ml-7 mt-7'>logout</button>
+                    <button type='button' onClick={handleLogout} className='ml-7 mt-7 bg-slate-700 rounded-lg p-3'>logout</button>
                 </div>
             </div>
         </div>
