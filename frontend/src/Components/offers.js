@@ -31,7 +31,7 @@ const Offers = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentOfferIndex((prevIndex) => (prevIndex + 1) % offersData.length);
-    }, 10000);
+    }, 3000);
 
     return () => clearInterval(interval); // Clean up the interval on component unmount
   }, [offersData]);

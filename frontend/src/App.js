@@ -10,6 +10,7 @@ import CategoryForm from './DbComponents/category';
 import CategoryList from './Components/CategoryList';
 import Body from './Components/Body';
 import Offers from './Components/offers'
+import ItemPage from './Components/ItemPage';
 
 function App() {
   const AppRouter = createBrowserRouter([
@@ -34,9 +35,13 @@ function App() {
           element : <CategoryList/>
         },
         {
-          path : "/home/:categoty/:products",
+          path : "/home/:category/:products",
           element : <Body/>
         },
+        {
+          path : "/home/:category/:products/item",
+          element : <ItemPage/>
+        }
       ]
     },
     {

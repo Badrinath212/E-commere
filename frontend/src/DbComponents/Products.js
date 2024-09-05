@@ -11,6 +11,7 @@ const Products = () => {
         category:"",
         description:"",
         rating:"",
+        subcategory:"",
         countInStock:100,
     });
     const handleChange=(e)=>{
@@ -42,6 +43,7 @@ const Products = () => {
                 category:"",
                 description:"",
                 rating:"",
+                subcategory:"",
                 countInStock:100,
                 productAttributes:{}
             });
@@ -71,6 +73,7 @@ const Products = () => {
             <input onChange={handleChange} type='text' className='p-2 border border-blue-400' name='category' placeholder='category' value={productDetails.category} required/><br/>
             <input onChange={handleChange} type='text' className='p-2 border border-blue-400' name='description' placeholder='description' value={productDetails.description} /><br/>
             <input onChange={handleChange} type='number' className='p-2 border border-blue-400' name='rating' placeholder='rating' value={productDetails.rating} required/><br/>
+            <input onChange={handleChange} type='text' className='p-2 border border-blue-400' name='subcategory' placeholder='subCategory' value={productDetails.subcategory} required/><br/>
             <input onChange={handleChange} type='number' className='p-2 border border-blue-400' name='countInStock' placeholder='countInStock' value={productDetails.countInStock} required/><br/>
             <input type='text' onChange={(e)=>setproductAttrKey(e.target.value)}  placeholder='AttributeName' className='p-2 border border-blue-400' name='attrName' value={productAttrKey}/>
             <input type='text' onChange={(e)=>setproductAttrValue(e.target.value)}  placeholder='AttributeValue' className='p-2 border border-blue-400' name='attrValue' value={productAttrValue}/><br/>

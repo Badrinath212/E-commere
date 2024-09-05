@@ -1,12 +1,17 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ data }) => {
   const { name, price, rating, image } = data;
   const formatPrice=(price)=>{
     return new Intl.NumberFormat('en-IN').format(price);
   }
+  const navigate = useNavigate();
+  const handleClick = ()=>{
+    navigate("/home/category/products/item", {state : {product : data}});
+  }
   return (
-    <div className="w-96 mt-4 bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <div onClick={handleClick} className="w-96 mt-4 bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer">
       <div className="w-full h-56">
         <img
           alt="Product"

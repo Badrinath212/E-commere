@@ -79,6 +79,10 @@ const productSchema = new Schema({
         required: false,
         default: 0
     },
+    subcategory: {
+        type: String,
+        required : true,
+    },
     countInStock: {
         type: Number,
         required: true
