@@ -87,13 +87,9 @@ const productSchema = new Schema({
         type: Number,
         required: true
     },
-    fashionAttributes: {
-        type: fashionAttributesSchema,
-        required: false
-    },
-    electronicAttributes: {
-        type: Schema.Types.Mixed,
-        required: false
+    attributes : {
+        type : Schema.Types.Mixed,
+        required : true
     }
 }, { timestamps: true });
 

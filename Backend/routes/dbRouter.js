@@ -19,7 +19,7 @@ router.post("/", validateForm ,async(req,res)=>{
         return res.json({errors : errors.array()});
     }
     try{
-        const {name,image,price,brand,category,description,rating,subcategory,countInStock,productAttributes}=req.body;
+        const {name,image,price,brand,category,description,rating,subcategory,countInStock,attributes}=req.body;
         const newProductData = {
             name,
             image: image.split(","),
@@ -29,12 +29,8 @@ router.post("/", validateForm ,async(req,res)=>{
             description,
             rating,
             subcategory,
-            countInStock
-        };
-        if(category==="Electronics"){
-            newProductData.electronicAttributes=productAttributes;
-        }else{
-            newProductData.fashionAttributes=productAttributes;
+            countInStock,
+            attributes
         };
         const newProduct = new Product(newProductData);
         await newProduct.save();
