@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
-import { CART_URL, LOGO_URL } from '../utils/constants';
+import { LOGO_URL } from '../utils/constants';
 import {useDispatch, useSelector} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clearuserInfo } from '../utils/ConfigSlice';
+import CartIcon from '../Icons/cartIcon';
+
 const Header=()=>{
-    const [searchQuery,setsearchQuery]=useState("");
-    const [lang,setlang]=useState("");
-    const dispatch=useDispatch();
-    const token=useSelector(store=>store.config.userInfo.token);
-    const userName=useSelector(store=>store.config.userInfo.user);
-    const navigate=useNavigate();
-    const handleSearch=()=>{
+    const [searchQuery,setsearchQuery] = useState("");
+    const [lang,setlang] = useState("");
+    const dispatch = useDispatch();
+    const token = useSelector(store=>store.config.userInfo.token);
+    const userName = useSelector(store=>store.config.userInfo.user);
+    const cartDataLength = useSelector(store => store.data.cartData);
+    const navigate = useNavigate();
+    const handleSearch = () =>{
         console.log(searchQuery);
         setsearchQuery("");
     }
-    const handleLogout=async()=>{
+    const handleLogout = async()=>{
         try{
             const response=await fetch(`http://localhost:5000/api/auth/logout`,{
                 method:`POST`,
@@ -38,6 +41,9 @@ const Header=()=>{
         }catch(err){
             console.log(`Error: ${err}`);
         }
+    }
+    const handleCart = ()=>{
+        navigate("/home/cart");
     }
     return (
         <div className=' shadow-lg h-28 flex bg-slate-800 text-white'>
@@ -65,8 +71,11 @@ const Header=()=>{
                         <option value="TE">Telugu</option>
                     </select>
                 </div>
-                <div>
-                    <img className='w-11 ml-7 mt-7' alt='cart' src={CART_URL}/>
+                <div className='mt-9 ml-3'>
+                    <div className='flex' onClick={handleCart}>
+                        <CartIcon/>
+                        <span className='-mt-4 -ml-2 text-red-600 font-bold'>{cartDataLength.length}</span>
+                    </div>
                 </div>
                 <div>
                     <button type='button' onClick={handleLogout} className='ml-7 mt-7 bg-slate-700 rounded-lg p-3'>logout</button>

@@ -11,6 +11,7 @@ import CategoryList from './Components/CategoryList';
 import Body from './Components/Body';
 import Offers from './Components/offers'
 import ItemPage from './Components/ItemPage';
+import Cart from './Components/Cart';
 
 function App() {
   const AppRouter = createBrowserRouter([
@@ -29,6 +30,10 @@ function App() {
         {
           path : "/home/",
           element : <Offers/>
+        },
+        {
+          path : "/home/cart",
+          element : <Cart/>
         },
         {
           path : "/home/:category",

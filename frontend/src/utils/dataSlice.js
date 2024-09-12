@@ -8,7 +8,8 @@ const dataSlice = createSlice({
         categoryList : [],
         category : "",
         subCategory : "",
-        offersData : []
+        offersData : [],
+        cartData : [],
     },
     reducers:{
         addProductsData : (state, action) => {
@@ -31,6 +32,14 @@ const dataSlice = createSlice({
         },
         addOffersData : (state, action) =>{
             state.offersData = action.payload;
+        },
+        addCartData : (state, action) =>{
+            state.cartData = action.payload;
+        },
+        deleteCartItem : (state, action) =>{
+            state.cartData = state.cartData.filter((item) =>{
+                return item.productId !== action.payload;
+            })
         }
     }
 });
@@ -38,5 +47,5 @@ const dataSlice = createSlice({
 export const {addProductsData, 
                 addItemName, addCategoryList, 
                 addCategory, addSubCategory, 
-                removesubCategory, addOffersData} = dataSlice.actions;
+                removesubCategory, addOffersData, addCartData, deleteCartItem} = dataSlice.actions;
 export default dataSlice.reducer;

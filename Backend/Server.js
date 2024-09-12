@@ -1,12 +1,25 @@
 const express = require("express");
+
 const cors = require("cors");
+
 const mongoose = require("mongoose"); 
+
 const { authRouter } = require("./routes/authentication.js");
+
 const {dbRouter} = require("./routes/dbRouter");
+
 const validateToken = require('./middleware/authorization');
+
 const {productRouter} = require('./routes/products.js');
+
 const CategoryRouter = require('./routes/categoryList.js');
+
+const orderRouter = require("./routes/orders.js");
+
+const cartRouter = require("./routes/cart.js");
+
 const app = express();
+
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -38,6 +51,10 @@ app.use('/protected', validateToken, (req,res)=>{
 app.use("/api/category", CategoryRouter)
 
 app.use('/api/products', productRouter);
+
+app.use("/api/order", orderRouter);
+
+app.use("/api/cart", cartRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
